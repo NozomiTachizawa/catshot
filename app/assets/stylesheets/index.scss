@@ -1,0 +1,30 @@
+.tweets-container {
+    width: 50%;
+    margin: 10px auto;
+  }
+  h2 {
+    margin-bottom: 30px;
+    color: #3B170B;
+  }
+  .tweet {
+    border-top: solid #E1B780;
+    margin-top: 10px;
+    padding-top: 20px;
+  }
+  .main-box {
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .time {
+    display: flex;
+    justify-content: flex-end;
+  }
+  a {
+    color: #7c2d13;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #4d1502;
+  }

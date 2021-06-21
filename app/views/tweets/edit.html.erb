@@ -1,0 +1,13 @@
+<h3>投稿編集</h3>
+
+<%= form_for @tweet do |f| %>
+    <%= f.label :本文 %><br />
+    <%= f.text_area :body, :size => "50x10" %>
+
+    <div class="field">
+        <%= f.label :添付画像 %><br />
+        <%= f.file_field :image %>
+    </div>
+
+    <p><%= f.submit "編集する" %></p>
+<% end %>
