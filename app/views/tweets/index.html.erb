@@ -1,12 +1,16 @@
 <%= stylesheet_link_tag 'index', :media => "all" %>
 
 <h2>投稿一覧</h2>
+<div class="search">
     <%= form_tag({controller:"tweets",action:"index"},method: :get) do %>
         <%= text_field_tag :search %>
         <%= submit_tag '検索' %>
     <% end %>
-<%= page_entries_info @tweets %>
-<%= paginate @tweets %>
+</div>
+<div class="page">
+    <%= page_entries_info @tweets %>
+    <%= paginate @tweets %>
+</div>
 <div class="tweets-container">
     <% @tweets.each do |t| %>
         <div class="tweet">
@@ -39,12 +43,16 @@
                         <%= link_to "編集", edit_tweet_path(t.id) %>
                         <%= link_to "削除", tweet_path(t.id), method: :delete %>
                     <% end %>
-                    <br>
-                    <p class="time"><%= t.created_at.to_s(:datetime_jp) %></p>
                 </div>
             </div>
+                <p class="time"><%= t.created_at.to_s(:datetime_jp) %></p>
         </div>
     <% end %>
+</div>
+
+<div class="page">
+    <%= page_entries_info @tweets %>
+    <%= paginate @tweets %>
 </div>
 
 <div id='map'></div>

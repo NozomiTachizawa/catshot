@@ -1,32 +1,52 @@
-<p>名前 : <%= @user.name %></p>
-<p>プロフィール : <%= @user.profile %></p>
+<%= stylesheet_link_tag 'index', :media => "all" %>
 
-<% if current_user.id == @user.id %>
-    <%= link_to "ユーザー情報の編集", edit_user_registration_path %>
-<% end %>
+<h2>ユーザー情報</h2>
+<div class="profile">
+    <h4>《名前》</h4><br>
+    <%= @user.name %><br>
+    <br>
+    <h4>《プロフィール》</h4><br>
+    <%= @user.profile %><br>
+    <br>
+    <% if current_user.id == @user.id %>
+        <%= link_to "ユーザー情報の編集", edit_user_registration_path %>
+    <% end %>
+</div>
 
 <h2>ユーザーの投稿一覧</h2>
-<% @user.tweets.each do |t| %>
-    <p><%= t.user.name %></p>
-    <p><%= t.body %></p>
-    <p><%= image_tag t.image_url, size: "250x200" if t.image? %></p>
-    <% if user_signed_in? %>
-            <% if current_user.already_liked?(t) %>
-                <%= link_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
-                    <i class="fas fa-paw"></i><%= t.likes.count %>
-                <% end %>
-            <% else %>
-                <%= link_to tweet_likes_path(id: t.id, tweet_id: t.id),method: :post do %>
-                    <i class="fas fa-paw"></i><% t.likes.count %>
-                <% end %>
-            <% end %>
-        <% else %>
-            <i class="fas fa-paw"></i><%= t.likes.count %>
-        <% end %>
-        <i class="far fa-comments"></i><%= t.comments.count %>
-        <br>
-            <%= t.created_at.to_s(:datetime_jp) %>
-            <%= link_to "詳細", tweet_path(t.id) %>
-<% end %>
-
-<p><%= link_to "投稿一覧に戻る", tweets_path %></p>
+<div class="tweets-container">
+    <% @user.tweets.each do |t| %>
+        <div class="tweet">
+            <div class="main-box">
+                <div class="left-container">
+                    <%= t.body %>
+                    <br>
+                    <%= image_tag t.image_url, size: "250x200" if t.image? %>
+                </div>
+                <div class="right-container">
+                    <% if user_signed_in? %>
+                        <% if current_user.already_liked?(t) %>
+                            <%= link_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
+                                <i class="fas fa-paw"></i><%= t.likes.count %>
+                            <% end %>
+                        <% else %>
+                            <%= link_to tweet_likes_path(id: t.id, tweet_id: t.id),method: :post do %>
+                                <i class="fas fa-paw"></i><% t.likes.count %>
+                            <% end %>
+                        <% end %>
+                    <% else %>
+                        <i class="fas fa-paw"></i><%= t.likes.count %>
+                    <% end %>
+                    <i class="far fa-comments"></i><%= t.comments.count %>
+                    <br>
+                    <%= link_to "詳細", tweet_path(t.id) %>
+                    <% if user_signed_in? && current_user.id == t.user_id %>
+                        <%= link_to "編集", edit_tweet_path(t.id) %>
+                        <%= link_to "削除", tweet_path(t.id), method: :delete %>
+                    <% end %>
+                </div>
+            </div>
+                <p class="time"><%= t.created_at.to_s(:datetime_jp) %></p>
+        </div>
+    <% end %>
+</div>

@@ -5,6 +5,11 @@
   h2 {
     margin-bottom: 30px;
     color: #3B170B;
+    text-align: center;
+  }
+  h4 {
+    color: #3B170B;
+    text-align: center;
   }
   .tweet {
     border-top: solid #E1B780;
@@ -27,4 +32,15 @@
   
   a:hover {
     color: #4d1502;
+    text-decoration: underline; 
+  }
+  .profile{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .search{
+    text-align: center;
+  }
+  .page{
+    text-align: center;
   }
