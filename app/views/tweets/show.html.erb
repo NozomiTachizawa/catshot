@@ -3,9 +3,9 @@
     <a href="/users/<%= @tweet.user.id %>"><%= @tweet.user.name %></a>
     <%= @tweet.body %>
     <br>
-    <%= image_tag @tweet.image_url, size: "250x200" if @tweet.image? %>
-    <br>
     <%= @tweet.spot %>
+    <br>
+    <%= image_tag @tweet.image_url, size: "250x200" if @tweet.image? %>
     <br>
     <%= @tweet.created_at.to_s(:datetime_jp) %>
 
