@@ -1,9 +1,12 @@
 <h3>投稿詳細</h3>
 <div class="tweet">
     <a href="/users/<%= @tweet.user.id %>"><%= @tweet.user.name %></a>
-    <p><%= @tweet.body %></p>
-    <p><%= image_tag @tweet.image_url, size: "250x200" if @tweet.image? %></p>
-    <p><%= @tweet.created_at.to_s(:datetime_jp) %></p>
+    <%= @tweet.body %>
+    <br>
+    <%= image_tag @tweet.image_url, size: "250x200" if @tweet.image? %>
+    <br>
+    <%= @tweet.spot %>
+    <%= @tweet.created_at.to_s(:datetime_jp) %>
 
     <% if user_signed_in? %>
         <% if current_user.already_liked?(@tweet) %>

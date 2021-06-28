@@ -11,16 +11,16 @@
         <%= f.file_field :image %>
     </div>
 
+    <div class="field">
+        <%= f.label :ネコがいた場所 %>
+        <%= f.text_field :spot, :size => 140 %>
+    </div>
+
     <div class="action">
         <%= f.label :lat,"緯度" %>
         <%= f.text_field :lat,:value =>"緯度", id: :lat %>
         <%= f.label :lng,"経度" %>
         <%= f.text_field :lng,:value =>"経度", id: :lng %>
-    </div>
-
-    <div class="field">
-        <%= f.label :ネコがいた場所 %>
-        <%= f.text_field :spot, :size => 140 %>
     </div>
 
     <p><%= f.submit "投稿" %></p>

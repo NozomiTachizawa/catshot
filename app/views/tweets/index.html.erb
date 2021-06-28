@@ -21,6 +21,8 @@
                     <%= t.body %>
                     <br>
                     <%= image_tag t.image_url, size: "250x200" if t.image? %>
+                    <br>
+                    <%= t.spot %>
                 </div>
                 <div class="right-container">
                     <% if user_signed_in? %>

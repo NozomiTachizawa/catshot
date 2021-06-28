@@ -9,5 +9,11 @@
         <%= f.file_field :image %>
     </div>
 
+    <div class="field">
+        <%= f.label :ネコがいた場所 %>
+        <%= f.text_field :spot, :size => 140 %>
+    </div>
+
+
     <p><%= f.submit "編集する" %></p>
 <% end %>
