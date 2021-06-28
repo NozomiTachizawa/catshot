@@ -6,6 +6,7 @@
     <%= image_tag @tweet.image_url, size: "250x200" if @tweet.image? %>
     <br>
     <%= @tweet.spot %>
+    <br>
     <%= @tweet.created_at.to_s(:datetime_jp) %>
 
     <% if user_signed_in? %>
