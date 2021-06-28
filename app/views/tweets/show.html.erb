@@ -3,7 +3,7 @@
     <a href="/users/<%= @tweet.user.id %>"><%= @tweet.user.name %></a>
     <%= @tweet.body %>
     <br>
-    <%= @tweet.spot %>
+    <%= @tweet.city %>
     <br>
     <%= image_tag @tweet.image_url, size: "250x200" if @tweet.image? %>
     <br>
