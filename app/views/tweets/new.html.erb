@@ -1,4 +1,5 @@
 <h3>新規投稿</h3>
+※画像添付や位置情報は任意です※
 <%= form_for @tweet do |f| %>
     <div class="field">
         <%= f.label :本文 %><br />
@@ -15,6 +16,11 @@
         <%= f.text_field :lat,:value =>"緯度", id: :lat %>
         <%= f.label :lng,"経度" %>
         <%= f.text_field :lng,:value =>"経度", id: :lng %>
+    </div>
+
+    <div class="field">
+        <%= f.label :ネコがいた場所 %>
+        <%= f.text_field :spot, :size => 140 %>
     </div>
 
     <p><%= f.submit "投稿" %></p>
