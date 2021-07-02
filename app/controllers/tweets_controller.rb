@@ -1,14 +1,14 @@
 class TweetsController < ApplicationController
 
-    before_action :authenticate_user!
+    before_action :authenticate_user!, only: [:new,:create,:edit,:update,:destroy]
 
     def index
         if params[:search] == nil
-            @tweets= Tweet.all.page(params[:page]).per(10)
+            @tweets= Tweet.all.page(params[:page]).per(10).order(created_at: :desc)
         elsif params[:search] == ''
-            @tweets= Tweet.all.page(params[:page]).per(10)
+            @tweets= Tweet.all.page(params[:page]).per(10).order(created_at: :desc)
         else
-            @tweets= Tweet.where("body LIKE ? ",'%' + params[:search] + '%').page(params[:page]).per(10)
+            @tweets= Tweet.where("body LIKE ? ",'%' + params[:search] + '%').page(params[:page]).per(10).order(created_at: :desc)
         end
     end
 
