@@ -51,6 +51,9 @@ class TweetsController < ApplicationController
         redirect_to action: :index
     end
 
+    def cat
+    end
+
     private
     def tweet_params
         params.require(:tweet).permit(:body, :image,:lat,:lng,:city)

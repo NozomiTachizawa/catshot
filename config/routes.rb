@@ -6,11 +6,12 @@ Rails.application.routes.draw do
   get 'hello/index' => 'hello#index'
   root 'hello#index'
   get 'hello/link' => 'hello#link'
+  get 'tweets/cat' => 'tweets#cat'
   resources :tweets do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create]
   end
-  
+
   get 'maps/index'
   resources :maps, only: [:index]
 
