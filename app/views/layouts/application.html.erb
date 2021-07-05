@@ -14,88 +14,61 @@
 
   <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+    <% if user_signed_in? %>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #E1B780;">
+      <div class="container-fluid">
+        <%= link_to 'CAT SHOT', hello_index_path, class:"navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <%= link_to "投稿一覧", tweets_path, class:"nav-link active"%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "新規投稿",new_tweet_path, class:"nav-link active"%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ネコ種紹介", tweets_cat_path, class:"nav-link active" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "マイページ", user_path(current_user.id), class:"nav-link active" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"nav-link active" %>
+            </li>
           </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
-
-    <header>
-      <h1>CAT SHOT</h1>
-      <div class="header-list">
-      <ul>
-        <li>
-          <% if user_signed_in? %>
-          <%= link_to 'トップページ', hello_index_path %>
-          <% end %>
-        </li>
-        <li>
-          <% if user_signed_in? %>
-          <%= link_to "マイページ", user_path(current_user.id) %>
-          <% end %>
-        </li>
-        <li>
-          <% if user_signed_in? %>
-          <%= link_to "新規投稿",new_tweet_path %>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to "投稿一覧", tweets_path %>
-        </li>
-        <li>
-          <%= link_to "ネコ種紹介", tweets_cat_path %>
-        </li>
-        <li>
-          <% if user_signed_in? %>
-          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-          <% end %>
-        </li>
-        <li>
-          <% if user_signed_in? %>
-          <% else %>
-          <%= link_to "ログイン", user_session_path %>
-          <% end %>
-        </li>
-        <li>
-          <% if user_signed_in? %>
-          <% else %>
-          <%= link_to "新規登録", new_user_registration_path %>
-          <% end %>
-        </li>
-      </ul>
+        </div>
       </div>
-    </header>
+    </nav>
+    <% else %>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #E1B780;">
+      <div class="container-fluid">
+        <%= link_to 'CAT SHOT', hello_index_path, class:"navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <%= link_to "投稿一覧", tweets_path, class:"nav-link active"%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ネコ種紹介", tweets_cat_path, class:"nav-link active" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログイン", user_session_path, class:"nav-link active" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "新規登録", new_user_registration_path, class:"nav-link active" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <% end %>
+
     <main>
     <%= yield %>
     <footer>
@@ -104,5 +77,12 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+      $('.navbar-nav>li>a , .dropdown-menu>a').on('click', function(){
+        if(this.id != 'navbarDropdown'){
+          $('.navbar-collapse').collapse('hide');
+        }
+      });
+    </script>
   </body>
 </html>

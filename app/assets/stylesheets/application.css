@@ -22,6 +22,17 @@
       Meiryo, "ＭＳ Ｐゴシック", sans-serif;
     background-color: #FAF2DB;
   }
+
+  .navbar-brand {
+    font-weight: bold;
+  }
+
+  .navbar-dark .navbar-nav .nav-link:hover {
+    color: #3B170B;
+    text-decoration: none;
+  }
+
+
   header {
     background-color: #E1B780;
     height: 80px;
