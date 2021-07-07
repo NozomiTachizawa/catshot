@@ -3,6 +3,9 @@
   color: #3B170B;
   font-weight: bold;
 }
+.search {
+  padding-bottom: 20px;
+}
 h2 {
     margin-bottom: 30px;
     color: #3B170B;
@@ -16,7 +19,9 @@ h2 {
     border-bottom: solid #E1B780;
     align-items: center;
     padding-bottom: 20px;
+    margin-top: 20px;
   }
+  
   .more-info {
     text-align: end;
   }
@@ -37,8 +42,5 @@ h2 {
     margin-bottom: 30px;
   }
   .search{
-    text-align: center;
-  }
-  .page{
     text-align: center;
   }

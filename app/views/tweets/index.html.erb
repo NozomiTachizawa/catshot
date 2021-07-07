@@ -7,10 +7,8 @@
         <%= submit_tag '検索' %>
     <% end %>
 </div>
-<div class="page">
-    <%= page_entries_info @tweets %>
+
     <%= paginate @tweets %>
-</div>
 
 <div class="container">
     <% @tweets.each do |t| %>
@@ -48,17 +46,14 @@
             <div class="col-sm-6">
                 <%= image_tag t.image_url, width: "250px" if t.image? %>
                 <br>
-                <%= video_tag t.video_url, :controls => true, :autoplay => true, width:"250px" if t.video?%>
+                <%= video_tag t.video_url, :controls => true, width:"250px" if t.video?%>
             </div>
         </div>
     <% end %>
 </div>
 
 
-<div class="page">
-    <%= page_entries_info @tweets %>
     <%= paginate @tweets %>
-</div>
 
 <div class="container">
     <div class="row">
@@ -124,6 +119,3 @@
         </div>
     </div>
 </div>
-
-
-<%= paginate @tweets %>

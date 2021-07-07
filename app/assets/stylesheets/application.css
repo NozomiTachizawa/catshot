@@ -70,6 +70,11 @@
     color: #3B170B;
     text-decoration: none;
   }
+
+  .pagination {
+    justify-content: center;
+  }
+
   footer {
     color: white;
     height: 30px;
