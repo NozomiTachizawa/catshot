@@ -1,5 +1,6 @@
 <h3>新規投稿</h3>
-※画像添付や位置情報は任意です※
+※画像・動画添付や位置情報は任意です※
+※画像と動画はどちらか一方のみ投稿してください※
 <%= form_for @tweet do |f| %>
     <div class="field">
         <%= f.label :本文 %><br />
@@ -9,6 +10,11 @@
     <div class="field">
         <%= f.label :添付画像 %><br />
         <%= f.file_field :image %>
+    </div>
+
+    <div class="field">
+        <%= f.label :動画 %><br />
+        <%= f.file_field :video %>
     </div>
 
     <div class="field">

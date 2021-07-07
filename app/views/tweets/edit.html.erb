@@ -10,9 +10,24 @@
     </div>
 
     <div class="field">
+        <%= f.label :動画 %><br />
+        <%= f.file_field :video %>
+    </div>
+
+
+    <div class="field">
         <%= f.label :ネコがいた場所 %>
         <%= f.text_field :city, :size => 50 %>
     </div>
+
+    <div class="action">
+        <%= f.label :lat,"緯度" %>
+        <%= f.text_field :lat,:value =>"緯度", id: :lat %>
+        <%= f.label :lng,"経度" %>
+        <%= f.text_field :lng,:value =>"経度", id: :lng %>
+    </div>
+    <p><%= f.submit "編集する" %></p>
+<% end %>
 
 <h2>Map</h2>
 
@@ -84,5 +99,3 @@ function codeAddress(){
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3zvDbgIMXQ9dUPkwLNblX75tAyVmM7n4&callback=initMap" async defer></script>
 
-    <p><%= f.submit "編集する" %></p>
-<% end %>

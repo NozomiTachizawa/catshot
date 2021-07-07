@@ -4,10 +4,12 @@
     <br>
     <%= @tweet.body %>
     <br>
-    <%= @tweet.city %>
+    ネコがいた場所：<%= @tweet.city %>
     <br>
     <%= image_tag @tweet.image_url, size: "250x200" if @tweet.image? %>
     <br>
+    <%= video_tag @tweet.video_url, :controls => true, :autoplay => true, :loop => true, size: "250x200" if @tweet.video?%>
+
     <%= @tweet.created_at.to_s(:datetime_jp) %>
 
     <% if user_signed_in? %>
@@ -55,7 +57,9 @@ function initMap(){
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3zvDbgIMXQ9dUPkwLNblX75tAyVmM7n4&callback=initMap" async defer></script>
 
-<%= link_to "編集", edit_tweet_path(@tweet.id) %>
+<% if user_signed_in? && current_user.id == @tweet.user_id %>
+    <%= link_to "編集", edit_tweet_path(@tweet.id) %>
+<% end %>
 
 <h2>いいねしたユーザー</h2>
 <% @tweet.liked_users.each do |user| %>

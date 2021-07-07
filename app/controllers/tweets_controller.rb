@@ -4,11 +4,11 @@ class TweetsController < ApplicationController
 
     def index
         if params[:search] == nil
-            @tweets= Tweet.all.page(params[:page]).per(10).order(created_at: :desc)
+            @tweets= Tweet.all.page(params[:page]).per(12).order(created_at: :desc)
         elsif params[:search] == ''
-            @tweets= Tweet.all.page(params[:page]).per(10).order(created_at: :desc)
+            @tweets= Tweet.all.page(params[:page]).per(12).order(created_at: :desc)
         else
-            @tweets= Tweet.where("body LIKE ? ",'%' + params[:search] + '%').page(params[:page]).per(10).order(created_at: :desc)
+            @tweets= Tweet.where("body LIKE ? ",'%' + params[:search] + '%').page(params[:page]).per(12).order(created_at: :desc)
         end
     end
 
@@ -56,7 +56,7 @@ class TweetsController < ApplicationController
 
     private
     def tweet_params
-        params.require(:tweet).permit(:body, :image,:lat,:lng,:city)
+        params.require(:tweet).permit(:body, :image, :video, :lat, :lng, :city)
     end
 
 end

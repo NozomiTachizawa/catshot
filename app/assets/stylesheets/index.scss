@@ -1,8 +1,9 @@
-.tweets-container {
-    width: 50%;
-    margin: 10px auto;
-  }
-  h2 {
+#title1{
+  text-align: center;
+  color: #3B170B;
+  font-weight: bold;
+}
+h2 {
     margin-bottom: 30px;
     color: #3B170B;
     text-align: center;
@@ -11,19 +12,16 @@
     color: #3B170B;
     text-align: center;
   }
-  .tweet {
-    border-top: solid #E1B780;
-    margin-top: 10px;
-    padding-top: 20px;
+  .tweets-row {
+    border-bottom: solid #E1B780;
+    align-items: center;
+    padding-bottom: 20px;
   }
-  .main-box {
-    margin: 5px 0;
-    display: flex;
-    justify-content: space-between;
+  .more-info {
+    text-align: end;
   }
   .time {
-    display: flex;
-    justify-content: flex-end;
+    text-align: end;
   }
   a {
     color: #7c2d13;
