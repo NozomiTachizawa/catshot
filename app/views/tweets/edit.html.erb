@@ -64,19 +64,23 @@
       }
       </style>
 
-      <script>
-      //初期マップの設定
-      let map
-      let marker
-      function initMap(){
-        geocoder = new google.maps.Geocoder()
+<script>
+//初期マップの設定
+let map
+let marker
+function initMap(){
+  geocoder = new google.maps.Geocoder()
 
-        map = new google.maps.Map(document.getElementById('map'), {
-          center:  {lat: 35.6803997, lng:139.7690174},  //東京
-          zoom: 15,
+  map = new google.maps.Map(document.getElementById('map'), {
+    center:  {lat: <%= @tweet.lat %>, lng: <%= @tweet.lng %>},
+    zoom: 15,
+  });
 
-        });
-      }
+   marker = new google.maps.Marker({
+    position:  {lat: <%= @tweet.lat %>, lng: <%= @tweet.lng %>},
+    map: map
+  });
+}
 
       //検索後のマップ作成
       let geocoder
