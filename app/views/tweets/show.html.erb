@@ -1,33 +1,47 @@
-<h3>投稿詳細</h3>
-<div class="tweet">
-    <a href="/users/<%= @tweet.user.id %>"><%= @tweet.user.name %></a>
-    <br>
-    <%= @tweet.body %>
-    <br>
-    ネコがいた場所：<%= @tweet.city %>
-    <br>
-    <%= image_tag @tweet.image_url, size: "250x200" if @tweet.image? %>
-    <br>
-    <%= video_tag @tweet.video_url, :controls => true, :autoplay => true, :loop => true, size: "250x200" if @tweet.video?%>
+<%= stylesheet_link_tag 'show', :media => "all" %>
 
-    <%= @tweet.created_at.to_s(:datetime_jp) %>
-
-    <% if user_signed_in? %>
-        <% if current_user.already_liked?(@tweet) %>
-            <%= link_to tweet_like_path(@tweet), method: :delete do %>
-                <i class="fas fa-paw"></i><%= @tweet.likes.count %>
-            <% end %>
-        <% else %>
-            <%= link_to tweet_likes_path(@tweet), method: :post do %>
-                <i class="fas fa-paw"></i><%= @tweet.likes.count %>
-            <% end %>
-        <% end %>
-    <% else %>
-        <i class="fas fa-paw"></i><%= @tweet.likes.count %>
-    <% end %>
+<h3 id = "title1">投稿詳細</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <a href="/users/<%= @tweet.user.id %>"><%= @tweet.user.name %></a>
+            <br>
+            <%= @tweet.body %>
+            <br>
+            ネコがいた場所：<%= @tweet.city %>
+            <p class="more-info">
+                <% if user_signed_in? && current_user.id == @tweet.user_id %>
+                    <%= link_to "編集", edit_tweet_path(@tweet.id) %>
+                <% end %>
+                <% if user_signed_in? %>
+                    <% if current_user.already_liked?(@tweet) %>
+                        <%= link_to tweet_like_path(@tweet), method: :delete do %>
+                            <i class="fas fa-paw"></i><%= @tweet.likes.count %>
+                        <% end %>
+                    <% else %>
+                        <%= link_to tweet_likes_path(@tweet), method: :post do %>
+                            <i class="fas fa-paw"></i><%= @tweet.likes.count %>
+                        <% end %>
+                    <% end %>
+                <% else %>
+                    <i class="fas fa-paw"></i><%= @tweet.likes.count %>
+                <% end %>
+            </p>
+            <p class="time"><%= @tweet.created_at.to_s(:datetime_jp) %></p>
+        </div>
+        <div class="col-sm-6">
+            <%= image_tag @tweet.image_url, width: "250px" if @tweet.image? %>
+            <br>
+            <%= video_tag @tweet.video_url, :controls => true, :autoplay => true, :loop => true, width: "250px" if @tweet.video?%>
+        </div>
+    </div>
 </div>
 
-<div id='map'></div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+
+        <div id='map'></div>
 
 <style>
 #map {
@@ -57,34 +71,37 @@ function initMap(){
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3zvDbgIMXQ9dUPkwLNblX75tAyVmM7n4&callback=initMap" async defer></script>
 
-<% if user_signed_in? && current_user.id == @tweet.user_id %>
-    <%= link_to "編集", edit_tweet_path(@tweet.id) %>
-<% end %>
-
-<h2>いいねしたユーザー</h2>
-<% @tweet.liked_users.each do |user| %>
-    <li><%= user.name unless @tweet.user.blank? %></li>
-<% end %>
-
-<div class="comment-wrapper">
-    <p>コメント一覧</p>
-    <% @comments.each do |c| %>
-        <div>
-            <%= c.user.name unless c.user.blank? %>
-            <br>
-            <%= c.content %>
         </div>
-            <br>
-    <% end %>
-
-    <% if user_signed_in? %>
-        <%= form_with(model:[@tweet, @comment], local: true) do |f| %>
-            <%= f.text_area :content %>
-            <%= button_tag type: "submit" do %>
-                <i class="far fa-comments"></i> コメントする
-            <% end %>
-        <% end %>
-    <% end %>
+    </div>
 </div>
 
-<%= link_to "投稿一覧", tweets_path %>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h4>いいねしたユーザー</h4>
+            <% @tweet.liked_users.each do |user| %>
+                <li><%= user.name unless @tweet.user.blank? %></li>
+            <% end %>
+        </div>
+        <div class="col-sm-6">
+            <h4>コメント一覧</h4>
+            <% if user_signed_in? %>
+                <%= form_with(model:[@tweet, @comment], local: true) do |f| %>
+                    <%= f.text_area :content, class:"form-control" %>
+                    <br>
+                    <%= button_tag type: "submit" do %>
+                        <i class="far fa-comments"></i> コメントする
+                    <% end %>
+                <% end %>
+            <% end %>
+            <br>
+            <% @comments.each do |c| %>
+            <div>
+                <%= c.user.name unless c.user.blank? %>
+                <br>
+                <%= c.content %>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>
