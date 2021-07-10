@@ -1,29 +1,39 @@
 <%= stylesheet_link_tag 'index', :media => "all" %>
 
-<h2>ユーザー情報</h2>
-<div class="profile">
-    <h4>《名前》</h4><br>
-    <%= @user.name %><br>
-    <br>
-    <h4>《プロフィール》</h4><br>
-    <%= @user.profile %><br>
-    <br>
+<h3 id = "title1">ユーザー情報</h3>
+<div class="container profile">
+    <div class="row">
+        <div class="offset-md-3 col-md-2">
+            <h5>《名前》</h5>
+        </div>
+        <div class="col-md-4">
+            <%= @user.name %><br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-md-3 col-md-2">
+            <h5>《プロフィール》</h5>
+        </div>
+        <div class="col-md-4">
+            <%= @user.profile %><br>
+        </div>
+    </div>
+</div>
+<div class="profile-show-link">
     <% if current_user.id == @user.id %>
         <%= link_to "ユーザー情報の編集", edit_user_registration_path %>
     <% end %>
 </div>
 
-<h2>ユーザーの投稿一覧</h2>
-<div class="tweets-container">
+<h3 id = "title1">ユーザーの投稿一覧</h3>
+<div class="container">
     <% @user.tweets.each do |t| %>
-        <div class="tweet">
-            <div class="main-box">
-                <div class="left-container">
-                    <%= t.body %>
-                    <br>
-                    <%= image_tag t.image_url, size: "250x200" if t.image? %>
-                </div>
-                <div class="right-container">
+        <div class="row tweets-row">
+            <div class="col-sm-6">
+                <%= t.body %>
+                <br>
+                ネコがいた場所：<%= t.city %>
+                <p class="more-info">
                     <% if user_signed_in? %>
                         <% if current_user.already_liked?(t) %>
                             <%= link_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
@@ -44,9 +54,14 @@
                         <%= link_to "編集", edit_tweet_path(t.id) %>
                         <%= link_to "削除", tweet_path(t.id), method: :delete %>
                     <% end %>
-                </div>
-            </div>
+                </p>
                 <p class="time"><%= t.created_at.to_s(:datetime_jp) %></p>
+            </div>
+            <div class="col-sm-6">
+                <%= image_tag t.image_url, width: "250px" if t.image? %>
+                <br>
+                <%= video_tag t.video_url, :controls => true, width:"250px" if t.video?%>
+            </div>
         </div>
     <% end %>
 </div>
