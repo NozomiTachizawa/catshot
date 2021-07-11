@@ -3,6 +3,7 @@ class CreateTweets < ActiveRecord::Migration[6.1]
     create_table :tweets do |t|
       t.text :body
       t.string :video
+      t.string :spot
       t.timestamps
     end
   end

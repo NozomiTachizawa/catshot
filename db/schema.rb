@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_28_092602) do
+ActiveRecord::Schema.define(version: 2021_06_10_161332) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2021_06_28_092602) do
   create_table "tweets", force: :cascade do |t|
     t.text "body"
     t.string "video"
+    t.string "spot"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
@@ -42,7 +43,6 @@ ActiveRecord::Schema.define(version: 2021_06_28_092602) do
     t.float "lat"
     t.float "lng"
     t.integer "user_id"
-    t.string "spot"
   end
 
   create_table "users", force: :cascade do |t|

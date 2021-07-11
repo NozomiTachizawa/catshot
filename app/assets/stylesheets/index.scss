@@ -17,7 +17,6 @@ h2 {
   }
   .tweets-row {
     border-bottom: solid #E1B780;
-    align-items: center;
     padding-bottom: 20px;
     margin-top: 20px;
   }
@@ -49,3 +48,12 @@ h2 {
   .search{
     text-align: center;
   }
+
+  @media screen and (min-width:720px) {
+      .video { width:250px;}
+      }
+    
+  @media screen and (max-width:719px) {
+    .video { width:100%;}
+    }
+  
