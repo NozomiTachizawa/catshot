@@ -18,12 +18,12 @@
     margin: 0;
   }
   body {
-    font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ",
-      Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+    font-family: YuGothic,'Yu Gothic','TsukuBRdGothic-Regular','ヒラギノ角ゴシック','Hiragino Sans','Arial',sans-serif;
     background-color: #FAF2DB;
   }
 
   .navbar-brand {
+    font-family: 'Segoe Print','Bradley Hand',sans-serif;
     font-weight: bold;
     font-size: xx-large;
   }
