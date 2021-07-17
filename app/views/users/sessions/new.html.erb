@@ -6,7 +6,7 @@
 
 <div class="container">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="row">
+  <div class="row form-row">
     <div class="offset-md-3 col-md-2">
       <h5>メール</h5>
     </div>
@@ -14,7 +14,7 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
     </div>
   </div>
-  <div class="row">
+  <div class="row form-row">
     <div class="offset-md-3 col-md-2">
       <h5>パスワード</h5>
     </div>
@@ -22,14 +22,14 @@
       <%= f.password_field :password, autocomplete: "off", class:"form-control" %>
     </div>
   </div>
-  <div class="row">
+  <div class="row form-row">
     <% if devise_mapping.rememberable? %>
     <div class="col-md-12 field">
       <p><%= f.check_box :remember_me %>ログイン情報を記憶する</p>
     </div>
     <% end %>
   </div>
-  <div class="row">
+  <div class="row form-row">
     <div class="col-md-12 action">
       <p><%= f.submit "ログイン" %></p>
     </div>

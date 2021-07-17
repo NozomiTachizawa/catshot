@@ -1,8 +1,8 @@
-<%= stylesheet_link_tag 'index', :media => "all" %>
+<%= stylesheet_link_tag 'mypage', :media => "all" %>
 
 <h3 id = "title1">ユーザー情報</h3>
 <div class="container profile">
-    <div class="row">
+    <div class="row profile-row">
         <div class="offset-md-3 col-md-2">
             <h5>《名前》</h5>
         </div>
@@ -10,7 +10,7 @@
             <%= @user.name %><br>
         </div>
     </div>
-    <div class="row">
+    <div class="row profile-row">
         <div class="offset-md-3 col-md-2">
             <h5>《プロフィール》</h5>
         </div>
@@ -58,7 +58,7 @@
                 <p class="time"><%= t.created_at.to_s(:datetime_jp) %></p>
             </div>
             <div class="col-sm-6">
-                <%= image_tag t.image_url, width: "250px" if t.image? %>
+                <%= image_tag t.image_url, width: "100%" if t.image? %>
                 <br>
                 <%= video_tag t.video_url, :controls => true, width:"250px" if t.video?%>
             </div>

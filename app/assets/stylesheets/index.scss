@@ -3,9 +3,6 @@
   color: #3B170B;
   font-weight: bold;
 }
-.search {
-  padding-bottom: 20px;
-}
 h2 {
     margin-bottom: 30px;
     color: #3B170B;
@@ -17,8 +14,10 @@ h2 {
   }
   .tweets-row {
     border-bottom: solid #E1B780;
-    padding-bottom: 20px;
-    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    padding-top: 20px;
+    padding-bottom: 30px;
   }
   
   .more-info {
@@ -37,14 +36,6 @@ h2 {
     text-decoration: underline; 
   }
 
-  .profile {
-    margin-bottom: 10px;
-  }
-
-  .profile-show-link{
-    text-align: center;
-    margin-bottom: 50px;
-  }
   .search{
     text-align: center;
   }
