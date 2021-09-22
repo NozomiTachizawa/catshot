@@ -36,9 +36,17 @@ h2 {
     text-decoration: underline; 
   }
 
+
   .search{
     text-align: center;
   }
+
+  .sort-link {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+
 
   @media screen and (min-width:720px) {
       .video { width:250px;}

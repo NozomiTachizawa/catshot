@@ -18,7 +18,7 @@
     <%= paginate @tweets %>
 
 <div class="container">
-    <% @tweets.each do |t| %>
+    <% @rank_tweets.each do |t| %>
         <div class="row tweets-row">
             <div class="col-sm-6">
                 <a href="/users/<%= t.user.id %>"><%= t.user.name %></a>
@@ -58,7 +58,6 @@
         </div>
     <% end %>
 </div>
-
 
     <%= paginate @tweets %>
 

@@ -1,6 +1,12 @@
 <%= stylesheet_link_tag 'new', :media => "all" %>
 
 <h3 id = "title1">新規投稿</h3>
+  <div class=warning1>
+    ※本文・画像or動画・ネコがいた場所は記入が必須です※
+    <br>
+    ※画像と動画はどちらか一方のみ投稿してください※
+  </div>
+  <br>
 <div class="container">
   <div class="row">
     <div class="col-md-6">
@@ -9,11 +15,6 @@
             <h6 id = "title2"><%= f.label :本文 %></h6>
             <%= f.text_area :body, class:"form-control" %>
         </div>
-
-        <div class=warning2>
-          ※画像と動画はどちらか一方のみ投稿してください※
-        </div>
-        <br>
 
         <div class="field box">
             <h6 id = "title2"><%= f.label :添付画像 %></h6>

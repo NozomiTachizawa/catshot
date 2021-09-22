@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root 'hello#index'
   get 'hello/link' => 'hello#link'
   get 'tweets/cat' => 'tweets#cat'
+  get 'tweets/rank' => 'tweets#rank'
   resources :tweets do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create]
