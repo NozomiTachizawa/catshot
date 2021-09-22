@@ -15,7 +15,7 @@
     <a><%= link_to "いいね数が多い順", tweets_rank_path %></a>
 </div>
 
-    <%= paginate @tweets %>
+    <%= paginate @rank_tweets %>
 
 <div class="container">
     <% @rank_tweets.each do |t| %>
@@ -59,7 +59,7 @@
     <% end %>
 </div>
 
-    <%= paginate @tweets %>
+    <%= paginate @rank_tweets %>
 
 <div class="container">
     <div class="row">

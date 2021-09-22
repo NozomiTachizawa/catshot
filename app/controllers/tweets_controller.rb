@@ -55,8 +55,8 @@ class TweetsController < ApplicationController
     end
 
     def rank # いいね数順にソート
-        @tweets = Tweet.all.page(params[:page]).per(5)
-        @rank_tweets = Tweet.all.sort {|a,b| b.liked_users.count <=> a.liked_users.count}
+        @tweets = Tweet.all
+        @rank_tweets = Tweet.all.sort {|a,b| b.liked_users.count <=> a.liked_users.count}.page(params[:page]).per(5)
     end
 
     private
