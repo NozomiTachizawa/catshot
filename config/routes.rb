@@ -3,14 +3,14 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  get 'hello/index' => 'hello#index'
+  get 'hello/index' => 'hello#index' # トップページ
   root 'hello#index'
   get 'hello/link' => 'hello#link'
-  get 'tweets/cat' => 'tweets#cat'
-  get 'tweets/rank' => 'tweets#rank'
-  resources :tweets do
-    resources :likes, only: [:create, :destroy]
-    resources :comments, only: [:create]
+  get 'tweets/cat' => 'tweets#cat' # ネコ種紹介ページ
+  get 'tweets/rank' => 'tweets#rank' # 投稿詳細ページ（いいねが多い順）
+  resources :tweets do # 投稿関連ページ
+    resources :likes, only: [:create, :destroy] # いいね
+    resources :comments, only: [:create] # コメント
   end
 
   get 'maps/index'

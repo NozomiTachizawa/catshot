@@ -13,8 +13,8 @@
   </head>
 
   <body>
-
-    <% if user_signed_in? %>
+    <!-- ナビゲーションバー -->
+    <% if user_signed_in? %> <!-- ログイン時 -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #E1B780;">
       <div class="container-fluid">
         <%= link_to 'CAT SHOT', hello_index_path, class:"navbar-brand" %>
@@ -42,7 +42,7 @@
         </div>
       </div>
     </nav>
-    <% else %>
+    <% else %> <!-- 未ログイン時 -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #E1B780;">
       <div class="container-fluid">
         <%= link_to 'CAT SHOT', hello_index_path, class:"navbar-brand" %>

@@ -1,7 +1,9 @@
 <%= stylesheet_link_tag 'index', :media => "all" %>
 
+<!-- 投稿一覧ページ（いいねが多い順） -->
 <h3 id = "title1">投稿一覧</h3><br>
 
+<!-- 投稿検索機能 -->
 <div class="search">
     <%= form_tag({controller:"tweets",action:"index"},method: :get) do %>
         <%= text_field_tag :search %>
@@ -9,24 +11,27 @@
     <% end %>
 </div>
 
+<!-- 投稿並べ替えリンク -->
 <div class="sort-link">
     ＜投稿の並べ替え＞<br>
     <a><%= link_to "新しい順", tweets_path %></a><br>
     <a><%= link_to "いいね数が多い順", tweets_rank_path %></a>
 </div>
 
-    <%= paginate @rank_tweets %>
+    <%= paginate @rank_tweets %> <!-- ページネーション -->
 
+<!-- 投稿内容 -->
 <div class="container">
     <% @rank_tweets.each do |t| %>
         <div class="row tweets-row">
             <div class="col-sm-6">
-                <a href="/users/<%= t.user.id %>"><%= t.user.name %></a>
+                <a href="/users/<%= t.user.id %>"><%= t.user.name %></a> <!-- ユーザー名 -->
                 <br>
-                <%= t.body %>
+                <%= t.body %> <!-- 本文 -->
                 <br>
                 ネコがいた場所：<%= t.city %>
                 <p class="more-info">
+                <!-- いいね -->
                 <% if user_signed_in? %>
                     <% if current_user.already_liked?(t) %>
                         <%= link_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
@@ -40,32 +45,36 @@
                 <% else %>
                     <i class="fas fa-paw"></i><%= t.likes.count %>
                 <% end %>
+                <!-- コメント数表示 -->
                 <i class="far fa-comments"></i><%= t.comments.count %>
                 <br>
+                <!-- 投稿詳細へのリンク -->
                 <%= link_to "詳細", tweet_path(t.id) %>
+                <!-- 投稿者（ログイン済）のみ編集ページ・投稿削除のリンク表示 -->
                 <% if user_signed_in? && current_user.id == t.user_id %>
                     <%= link_to "編集", edit_tweet_path(t.id) %>
                     <%= link_to "削除", tweet_path(t.id), method: :delete %>
                 <% end %>
                 </p>
+                <!-- 投稿時間 -->
                 <p class="time"><%= t.created_at.to_s(:datetime_jp) %></p>
             </div>
             <div class="col-sm-6">
-                <%= image_tag t.image_url, width: "100%" if t.image? %>
+                <%= image_tag t.image_url, width: "100%" if t.image? %> <!-- 投稿画像 -->
                 <br>
-                <%= video_tag t.video_url, :controls => true, class: "video" if t.video?%>
+                <%= video_tag t.video_url, :controls => true, class: "video" if t.video?%> <!-- 投稿動画 -->
             </div>
         </div>
     <% end %>
 </div>
 
-    <%= paginate @rank_tweets %>
+    <%= paginate @rank_tweets %> <!-- ページネーション -->
 
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
         <div id='map'></div>
-
+<!-- 投稿一覧マップ -->
 <style>
 #map {
   height: 600px;

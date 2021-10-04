@@ -1,18 +1,21 @@
 <%= stylesheet_link_tag 'show', :media => "all" %>
 
+<!-- 投稿詳細ページ -->
 <h3 id = "title1">投稿詳細</h3>
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
-            <a href="/users/<%= @tweet.user.id %>"><%= @tweet.user.name %></a>
+            <a href="/users/<%= @tweet.user.id %>"><%= @tweet.user.name %></a> <!-- ユーザー名 -->
             <br>
-            <%= @tweet.body %>
+            <%= @tweet.body %> <!-- 本文 -->
             <br>
             ネコがいた場所：<%= @tweet.city %>
             <p class="more-info">
+                <!-- 投稿者（ログイン済）のみ編集ページへのリンク表示 -->
                 <% if user_signed_in? && current_user.id == @tweet.user_id %>
                     <%= link_to "編集", edit_tweet_path(@tweet.id) %>
                 <% end %>
+                <!-- いいね -->
                 <% if user_signed_in? %>
                     <% if current_user.already_liked?(@tweet) %>
                         <%= link_to tweet_like_path(@tweet), method: :delete do %>
@@ -27,16 +30,18 @@
                     <i class="fas fa-paw"></i><%= @tweet.likes.count %>
                 <% end %>
             </p>
+            <!-- 投稿時間 -->
             <p class="time"><%= @tweet.created_at.to_s(:datetime_jp) %></p>
         </div>
         <div class="col-sm-6">
-            <%= image_tag @tweet.image_url, width: "250px" if @tweet.image? %>
+            <%= image_tag @tweet.image_url, width: "250px" if @tweet.image? %> <!-- 投稿画像 -->
             <br>
-            <%= video_tag @tweet.video_url, :controls => true, :autoplay => true, :loop => true, width: "250px" if @tweet.video?%>
+            <%= video_tag @tweet.video_url, :controls => true, :autoplay => true, :loop => true, width: "250px" if @tweet.video?%> <!-- 投稿動画 -->
         </div>
     </div>
 </div>
 
+<!-- 投稿マップ -->
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
@@ -78,13 +83,16 @@ function initMap(){
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
+            <!-- いいねしたユーザー名一覧 -->
             <h4>いいねしたユーザー</h4>
             <% @tweet.liked_users.each do |user| %>
                 <li><%= user.name unless @tweet.user.blank? %></li>
             <% end %>
         </div>
         <div class="col-sm-6">
+            <!-- コメント -->
             <h4>コメント一覧</h4>
+            <!-- ログイン済ユーザーにのみコメント投稿フォーム表示 -->
             <% if user_signed_in? %>
                 <%= form_with(model:[@tweet, @comment], local: true) do |f| %>
                     <%= f.text_area :content, class:"form-control" %>
@@ -99,9 +107,9 @@ function initMap(){
             <br>
             <% @comments.each do |c| %>
             <div>
-                <%= c.user.name unless c.user.blank? %>
+                <%= c.user.name unless c.user.blank? %> <!-- ユーザー名 -->
                 <br>
-                <%= c.content %>
+                <%= c.content %> <!-- 本文 -->
             </div>
             <% end %>
         </div>

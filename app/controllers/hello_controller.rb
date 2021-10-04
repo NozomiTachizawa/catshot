@@ -1,9 +1,9 @@
 class HelloController < ApplicationController
 
-    def index
+    def index # トップページ
     end
 
-    def link
+    def link # 不使用ページ
     end
 
 end

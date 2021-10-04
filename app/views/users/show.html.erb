@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag 'mypage', :media => "all" %>
 
+<!-- マイページ（ユーザーページ） -->
 <h3 id = "title1">ユーザー情報</h3>
 <div class="container profile">
     <div class="row profile-row">
@@ -20,6 +21,7 @@
     </div>
 </div>
 <div class="profile-show-link">
+    <!-- 自分のマイページの場合、ユーザー情報編集ページへのリンク表示 -->
     <% if current_user.id == @user.id %>
         <%= link_to "ユーザー情報の編集", edit_user_registration_path %>
     <% end %>

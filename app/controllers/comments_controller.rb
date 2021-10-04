@@ -1,5 +1,5 @@
-class CommentsController < ApplicationController
-    before_action :authenticate_user!
+class CommentsController < ApplicationController # コメント機能
+    before_action :authenticate_user! # ログインしている人だけがコメント投稿可
 
     def create
         tweet = Tweet.find(params[:tweet_id])
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
 
     private
 
-    def comment_params
+    def comment_params # パラメータ設定
         params.require(:comment).permit(:content)
     end
 
